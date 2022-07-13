@@ -24,9 +24,11 @@ def person_calc(request):
     dish_name = request.GET.get('dish_name')
     if dish_name in DATA:
         recipe = DATA[dish_name]
-        persons_count = int(request.GET.get('persons_count'))
+        persons_count = request.GET.get('persons_count')
         if not persons_count:
             persons_count = 1
+        else:
+            persons_count = int(persons_count)
         if persons_count > 1:
             for ingredient in recipe:
                 correct_amount = recipe[ingredient] * persons_count
